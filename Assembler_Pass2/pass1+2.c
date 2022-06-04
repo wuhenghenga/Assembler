@@ -53,7 +53,7 @@ typedef struct IntermediateRecord {
 	unsigned			fmt;
 }IntermediateRec;
 
-int process_line(LINE *line);			/* return LINE_EOF, LINE_COMMENT, LINE_ERROR, LINE_CORRECT and Instruction information in *line*/
+int process_line(LINE *line);	/* return LINE_EOF, LINE_COMMENT, LINE_ERROR, LINE_CORRECT and Instruction information in *line*/
 SYM_table SYMTAB[SYMTAB_SIZE];			// Symbol table variable
 IntermediateRec* IMRArray[IMR_SIZE];	// Intermediate file variable
 RLD RLDArray[RLD_SIZE];					// Relocation Dist store inst need to be relocated
@@ -785,8 +785,7 @@ int main(int argc, char *argv[]){
 							inst_address = filterNumber(StrToDec(IMRArray[Imp_loop]->operand1), (IMRArray[Imp_loop]->fmt == 4) ? 5 : 3); // oprand1 to num, addressing with 0xXXXXX/0xXXX
 						}else{	// Exception handling when operand1 not symbol or num
 							printf("ERROR: Operand %s isn't exist [line : %X]\n", IMRArray[Imp_loop]->operand1, IMRArray[Imp_loop]->Loc);
-							freeAll();
-							exit(1);
+							freeAll();exit(1);
 						}
 						
 					}
@@ -849,7 +848,7 @@ int main(int argc, char *argv[]){
 				IMRArray[Imp_loop]->ObjectCode = 0;					//set to default
 				base_register = -1;
 			}
-			printf("%s\t%s\t%s\t%s\t%X\n", IMRArray[Imp_loop]->symbol, IMRArray[Imp_loop]->op, IMRArray[Imp_loop]->operand1, IMRArray[Imp_loop]->operand2, IMRArray[Imp_loop]->ObjectCode);
+			//printf("%s\t%s\t%s\t%s\t%X\n", IMRArray[Imp_loop]->symbol, IMRArray[Imp_loop]->op, IMRArray[Imp_loop]->operand1, IMRArray[Imp_loop]->operand2, IMRArray[Imp_loop]->ObjectCode);
 		}
 		
 		//print
